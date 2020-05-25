@@ -1,0 +1,9 @@
+h1 dit cai con me
+form(action = '/users/search',method ="GET")
+	input(type = 'text',name = 'q')
+	button search
+ul
+	each user in users
+		li= user.name
+a(href = '/users/creative') click to creatice
+		
