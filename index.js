@@ -34,14 +34,14 @@ app.get('/users/creative',function(req,res){
 	res.render('creative/index');
 
 });
-app.get('/users/:id',function(req,res){
-	var id = req.params.id;
-	var user = db.get('list').find({id:id}).value();
-	res.render('users/view',{
-		users : user
-	});
-});
-app.get('/users',function(req,res){
+// app.get('/users/:id',function(req,res){
+// 	var id = req.params.id;
+// 	var user = db.get('list').find({id:id}).value();
+// 	res.render('users/view',{
+// 		users : user
+// 	});
+// });
+app.get('/users/search',function(req,res){
 	// var q = req.query.q;
 	// var match = list.filter(function(user){
 	// 	return user.name.indexOf(q) !== -1;
@@ -50,17 +50,23 @@ app.get('/users',function(req,res){
 	// 		users:match
 	// 	});
 	var q = req.query.q;
-	var match = list.filter(function(user){
+	var x = db.get('list').value();
+	var match = x.filter(function(user){
 		return user.name.indexOf(q) !== -1;
 	});
-	console.log(match);
-	const post = db.get('list')
-        .find({ name : match })
-        .value()
-
-      res.render('users/aaa',{
-      	user:post
-      });
+	
+	res.render('users/index',{
+		users:match
+	});
+	
+	
+});
+app.get('/users/:id',function(req,res){
+	var id = req.params.id;
+	var user = db.get('list').find({id:id}).value();
+	res.render('users/view',{
+		users : user
+	});
 });
 app.post('/users/creative',function(req,res){
 	req.body.id=shortid.generate();
@@ -70,5 +76,7 @@ app.post('/users/creative',function(req,res){
 
 app.listen(port,function(){
 	console.log('hello world');
+	var x = db.get('list').value();
+	console.log(x);
 });
 // use library lowdb just to learn or small project
