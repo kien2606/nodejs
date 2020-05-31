@@ -1,0 +1,17 @@
+extends ../layouts/common
+block content
+
+		h1 Login your account
+		if errors
+			each error of errors
+				.alert.alert-danger= error
+		form(method = "POST")
+			.form-group
+				label(for='check') Email: 
+				input(type = "text" ,name = "email",id = 'check',value = values ? values.email : "")
+			.form-group
+				label(for = 'phone') PassWord:
+				input(type = "text" , name = 'password' ,id = 'phone',value = values ? values.password: "")
+			button Login
+
+

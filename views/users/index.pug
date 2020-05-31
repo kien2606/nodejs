@@ -1,13 +1,18 @@
-h1 alo alo alo
-form(action = '/users/search',method ="GET")
-	input(type = 'text',name = 'q')
-	button search
-ul
-	each user in users
-		li
-			span=user.name
-			span &nbsp
-			a(href='/users/'+user.id) View
+extends ../layouts/common.pug
+block content
+		form(action='/users/search',method = 'GET')
+			input( name = 'q',type = 'text', id = 'name')
+			button search
+		ul
+			each user in users
+				li
+					b Name: 
+						span=user.name
+					span &nbsp ;    
+					b Phone:
+						span=user.phone 
+					span &nbsp
+					a(href='/users/'+user.id) View
 
-a(href = '/users/creative') click to creatice
+		a(href = '/users/creative') click to creatice
 		

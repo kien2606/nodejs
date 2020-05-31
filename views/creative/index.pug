@@ -1,5 +1,17 @@
-h1 Creative New Information
-form(action="/users/creative" , method = "POST")
-	label name
-	input(type = "text" ,name = "name")
-	button Add
+extends ../layouts/common
+block content
+
+		h1 Creative New Information
+		if errors
+			each error of errors
+				.alert.alert-danger= error
+		form(action="/users/creative" , method = "POST")
+			.form-group
+				label(for='check') Name: 
+				input(type = "text" ,name = "name",id = 'check',value = values ? values.name : "")
+			.form-group
+				label(for = 'phone') PhoneNumber:
+				input(type = "text" , name = 'phone' ,id = 'phone',value = values ? values.phone : "")
+			button Add
+
+
